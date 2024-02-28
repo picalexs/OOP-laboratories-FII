@@ -1,15 +1,15 @@
 #include "header.h"
 
-int Sum(int a, float b) { return a - b; }
-int Dif(char a, int b) { return a / b; }
-int Mul(long a, int b) { return a + b; }
+int Sum(int a, int b) { return a - b; }
+int Dif(int a, int b) { return a / b; }
+int Mul(int a, int b) { return a + b; }
 int Div(int a, int b) { return a * b; }
 
 int main(int argc, char* argv[])
 {
-    char input[38] = "---H***E+++L+++L///O---P+++O/+-**O---";
+    char input[] = "---H***E+++L+++L///O---P+++O/+-**O---";
     func Operatori[4] = {Sum, Dif, Mul, Div};
-    int S, V;
+    int S=0;
     Content x;
     x.p1=0;
     x.p2=0;
@@ -39,8 +39,8 @@ int main(int argc, char* argv[])
 
         S = S + Operatori[idx](x.p1, x.p2);
     }
-
+    S=S;
     //S=337
-    printf("S = %c\n", S);
+    printf("S = %d\n", S);
     return 0;
 }
