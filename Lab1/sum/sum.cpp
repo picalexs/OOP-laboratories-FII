@@ -14,17 +14,19 @@ long long convertToNumber(char *line){
 
 int main()
 {
-    FILE *file = fopen("in.txt","r");
+    FILE *file;
+    auto succes = fopen_s(&file,"in.txt","r");
     if(file==NULL){
         printf("Couldn't open the file!!");
         return 0;
     }
 
-    int sum=0;
+    long long sum=0;
     char line[16]{};
     while(fgets(line,16,file)!=NULL){
         sum+=convertToNumber(line);
     }
-    printf("The sum is: %d\n", sum);
+    printf("The sum is: %lld\n", sum);
+    fclose(file);
     return 0;
 }
