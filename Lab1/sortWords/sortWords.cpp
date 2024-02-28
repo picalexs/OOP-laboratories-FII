@@ -10,6 +10,17 @@ bool compareWords(string w1, string w2) {
     return w1.length() > w2.length();
 }
 
+void sortWords(string words[], int wordsIdx){
+    for(int i=0;i<wordsIdx-1;i++){
+        for(int j=i+1;j<wordsIdx;j++)
+        {
+            if(!compareWords(words[i],words[j])){
+                swap(words[i],words[j]);
+            }
+        }
+    }
+}
+
 int main() {
     char sentence[256];
     fgets(sentence, 256, stdin);
@@ -30,7 +41,7 @@ int main() {
     }
 
     words[wordIdx-1].pop_back();//sterger \n de la ultimul cuvant
-    sort(words, words + wordIdx, compareWords);
+    sortWords(words,wordIdx);
 
     for (int i = 0; i < wordIdx; i++) {
         printf("%s\n", words[i].c_str());
