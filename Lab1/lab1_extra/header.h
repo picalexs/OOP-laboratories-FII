@@ -3,7 +3,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define MAX 1000
 
 enum VALORI {
