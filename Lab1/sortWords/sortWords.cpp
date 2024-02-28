@@ -1,6 +1,5 @@
 #include <string>
 #include <stdio.h>
-#include <algorithm>
 using namespace std;
 
 bool compareWords(string w1, string w2) {
@@ -42,7 +41,7 @@ int main() {
 
     words[wordIdx-1].pop_back();//sterger \n de la ultimul cuvant
     sortWords(words,wordIdx);
-
+    
     for (int i = 0; i < wordIdx; i++) {
         printf("%s\n", words[i].c_str());
     }
