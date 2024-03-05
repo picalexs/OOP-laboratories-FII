@@ -1,16 +1,13 @@
-# Ignore all files except .cpp, .txt, and .h
+# Ignore everything
 *
 
-# Allow .cpp, .txt, and .h files
-!*.cpp
+# Allow specific file types and folders
+!*/
+!*.in
+!*.out
 !*.txt
+!*.cpp
 !*.h
-
-# Allow solution and project files
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
 
 # Ignore other Visual Studio files and folders
 .vs/
