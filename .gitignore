@@ -1,3 +1,47 @@
-.vscode/c_cpp_properties.json
-.vscode/settings.json
-.vscode/tasks.json
+# Ignore all files except .cpp, .txt, and .h
+*
+
+# Allow .cpp, .txt, and .h files
+!*.cpp
+!*.txt
+!*.h
+
+# Allow solution and project files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Ignore other Visual Studio files and folders
+.vs/
+*.suo
+*.user
+*.aps
+*.pdb
+*.idb
+*.obj
+*.pch
+*.dll
+*.exe
+*.manifest
+*_i.c
+*_p.c
+*.ilk
+*.ncb
+*.sdf
+*.suo
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.lib
+*.zip
+*.log
+*.ncrunch*
+*.log.*
+*.pidb
+*.log
+*.sdf
+*.opensdf
+*.docstates
