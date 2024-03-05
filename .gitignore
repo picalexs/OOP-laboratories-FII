@@ -1,6 +1,5 @@
 # Ignore everything
 *
-x64/
 
 # Allow specific file types and folders
 !*/
@@ -10,8 +9,10 @@ x64/
 !*.cpp
 !*.h
 
+
 # Ignore other Visual Studio files and folders
 .vs/
+x64/
 *.suo
 *.user
 *.aps
