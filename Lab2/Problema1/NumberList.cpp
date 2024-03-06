@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 void NumberList::Init(){
-    count =0;
+    this->count =0;
 }
 
 bool NumberList::Add(int x){

@@ -1,46 +1,46 @@
 #include "Student.h"
 
-void Student::setName(string nameToSet)
+void Student::SetName(string nameToSet)
 {
 	name = nameToSet;
 }
 
-string Student::getName()
+string Student::GetName()
 {
 	return name;
 }
 
-void Student::setGradeMatematics(float gradeToSet)
+void Student::SetGradeMatematics(float gradeToSet)
 {
 	gradeMatematics = gradeToSet;
 }
 
-float Student::getGradeMatematics() const
+float Student::GetGradeMatematics() const
 {
 	return gradeMatematics;
 }
 
-void Student::setGradeEnglish(float gradeToSet)
+void Student::SetGradeEnglish(float gradeToSet)
 {
 	gradeEnglish = gradeToSet;
 }
 
-float Student::getGradeEnglish() const
+float Student::GetGradeEnglish() const
 {
 	return gradeEnglish;
 }
 
-void Student::setGradeHistory(float gradeToSet)
+void Student::SetGradeHistory(float gradeToSet)
 {
 	gradeHistory = gradeToSet;
 }
 
-float Student::getGradeHistory() const
+float Student::GetGradeHistory() const
 {
 	return gradeHistory;
 }
 
-float Student::getAverageGrade() const
+float Student::GetAverageGrade() const
 {
 	return (gradeEnglish + gradeHistory + gradeMatematics) / 3.0f;
 }

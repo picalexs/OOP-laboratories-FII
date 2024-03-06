@@ -6,21 +6,21 @@ using namespace std;
 int main()
 {
 	Student Popescu, Ioan;
-	Ioan.setName("Ioan");
-	Ioan.setGradeMatematics(10);
-	Ioan.setGradeEnglish(5);
-	Ioan.setGradeHistory(9);
+	Ioan.SetName("Ioan");
+	Ioan.SetGradeMatematics(10);
+	Ioan.SetGradeEnglish(5);
+	Ioan.SetGradeHistory(9);
 
-	Popescu.setName("Popescu");
-	Popescu.setGradeMatematics(6);
-	Popescu.setGradeEnglish(8);
-	Popescu.setGradeHistory(10);
+	Popescu.SetName("Popescu");
+	Popescu.SetGradeMatematics(6);
+	Popescu.SetGradeEnglish(8);
+	Popescu.SetGradeHistory(10);
 
-	printf("Compare name (Ioan, Popescu) = %d\n", compareName(Ioan, Popescu));
-	printf("Compare grade matematics (Ioan, Popescu) = %d\n", compareGradeMatematics(Ioan, Popescu));
-	printf("Compare grade english (Ioan, Popescu) = %d\n", compareGradeEnglish(Ioan, Popescu));
-	printf("Compare grade history (Ioan, Popescu) = %d\n", compareGradeHistory(Ioan, Popescu));
-	printf("Compare average grade (Ioan, Popescu) = %d\n", compareAverageGrade(Ioan, Popescu));
+	printf("Compare name (Ioan, Popescu) = %d\n", CompareName(Ioan, Popescu));
+	printf("Compare grade matematics (Ioan, Popescu) = %d\n", CompareGradeMatematics(Ioan, Popescu));
+	printf("Compare grade english (Ioan, Popescu) = %d\n", CompareGradeEnglish(Ioan, Popescu));
+	printf("Compare grade history (Ioan, Popescu) = %d\n", CompareGradeHistory(Ioan, Popescu));
+	printf("Compare average grade (Ioan, Popescu) = %d\n", CompareAverageGrade(Ioan, Popescu));
 
 	return 0;
 }

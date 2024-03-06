@@ -3,12 +3,12 @@
 #include "Student.h"
 using namespace std;
 
-int compareName(Student firstStudent, Student secondStudent);
+int CompareName(Student firstStudent, Student secondStudent);
 
-int compareGradeMatematics(const Student& firstStudent, const Student& secondStudent);
+int CompareGradeMatematics(const Student& firstStudent, const Student& secondStudent);
 
-int compareGradeEnglish(const Student& firstStudent, const Student& secondStudent);
+int CompareGradeEnglish(const Student& firstStudent, const Student& secondStudent);
 
-int compareGradeHistory(const Student& firstStudent, const Student& secondStudent);
+int CompareGradeHistory(const Student& firstStudent, const Student& secondStudent);
 
-int compareAverageGrade(const Student& firstStudent, const Student& secondStudent);
+int CompareAverageGrade(const Student& firstStudent, const Student& secondStudent);

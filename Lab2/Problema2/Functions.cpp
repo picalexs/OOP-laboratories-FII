@@ -1,9 +1,9 @@
 #include "Functions.h"
 
-int compareName(Student firstStudent, Student secondStudent)
+int CompareName(Student firstStudent, Student secondStudent)
 {
-	const string nameFirstStudent = firstStudent.getName();
-	const string nameSecondStudent = secondStudent.getName();
+	const string nameFirstStudent = firstStudent.GetName();
+	const string nameSecondStudent = secondStudent.GetName();
 
 	if (nameFirstStudent < nameSecondStudent)
 		return -1;
@@ -12,10 +12,10 @@ int compareName(Student firstStudent, Student secondStudent)
 	return 0;
 }
 
-int compareGradeMatematics(const Student& firstStudent, const Student& secondStudent)
+int CompareGradeMatematics(const Student& firstStudent, const Student& secondStudent)
 {
-	const float gradeFirstStudent = firstStudent.getGradeMatematics();
-	const float gradeSecondStudent = secondStudent.getGradeMatematics();
+	const float gradeFirstStudent = firstStudent.GetGradeMatematics();
+	const float gradeSecondStudent = secondStudent.GetGradeMatematics();
 
 	if(gradeFirstStudent < gradeSecondStudent)
 		return -1;
@@ -24,10 +24,10 @@ int compareGradeMatematics(const Student& firstStudent, const Student& secondStu
 	return 0;
 }
 
-int compareGradeHistory(const Student& firstStudent, const Student& secondStudent)
+int CompareGradeHistory(const Student& firstStudent, const Student& secondStudent)
 {
-	const float gradeFirstStudent = firstStudent.getGradeHistory();
-	const float gradeSecondStudent = secondStudent.getGradeHistory();
+	const float gradeFirstStudent = firstStudent.GetGradeHistory();
+	const float gradeSecondStudent = secondStudent.GetGradeHistory();
 
 	if (gradeFirstStudent < gradeSecondStudent)
 		return -1;
@@ -37,10 +37,10 @@ int compareGradeHistory(const Student& firstStudent, const Student& secondStuden
 }
 
 
-int compareGradeEnglish(const Student& firstStudent, const Student& secondStudent)
+int CompareGradeEnglish(const Student& firstStudent, const Student& secondStudent)
 {
-	const float gradeFirstStudent = firstStudent.getGradeEnglish();
-	const float gradeSecondStudent = secondStudent.getGradeEnglish();
+	const float gradeFirstStudent = firstStudent.GetGradeEnglish();
+	const float gradeSecondStudent = secondStudent.GetGradeEnglish();
 
 	if (gradeFirstStudent < gradeSecondStudent)
 		return -1;
@@ -49,10 +49,10 @@ int compareGradeEnglish(const Student& firstStudent, const Student& secondStuden
 	return 0;
 }
 
-int compareAverageGrade(const Student& firstStudent, const Student& secondStudent)
+int CompareAverageGrade(const Student& firstStudent, const Student& secondStudent)
 {
-	const float gradeFirstStudent = firstStudent.getAverageGrade();
-	const float gradeSecondStudent = secondStudent.getAverageGrade();
+	const float gradeFirstStudent = firstStudent.GetAverageGrade();
+	const float gradeSecondStudent = secondStudent.GetAverageGrade();
 
 	if (gradeFirstStudent < gradeSecondStudent)
 		return -1;
