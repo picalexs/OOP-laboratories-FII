@@ -16,11 +16,11 @@ int main()
 	Popescu.SetGradeEnglish(8);
 	Popescu.SetGradeHistory(10);
 
-	printf("Compare name (Ioan, Popescu) = %d\n", CompareName(Ioan, Popescu));
-	printf("Compare grade matematics (Ioan, Popescu) = %d\n", CompareGradeMatematics(Ioan, Popescu));
-	printf("Compare grade english (Ioan, Popescu) = %d\n", CompareGradeEnglish(Ioan, Popescu));
-	printf("Compare grade history (Ioan, Popescu) = %d\n", CompareGradeHistory(Ioan, Popescu));
-	printf("Compare average grade (Ioan, Popescu) = %d\n", CompareAverageGrade(Ioan, Popescu));
+	printf("Compare name (Ioan, Popescu) = %d\n", CompareName(&Ioan, &Popescu));
+	printf("Compare grade matematics (Ioan, Popescu) = %d\n", CompareGradeMatematics(&Ioan, &Popescu));
+	printf("Compare grade english (Ioan, Popescu) = %d\n", CompareGradeEnglish(&Ioan, &Popescu));
+	printf("Compare grade history (Ioan, Popescu) = %d\n", CompareGradeHistory(&Ioan, &Popescu));
+	printf("Compare average grade (Ioan, Popescu) = %d\n", CompareAverageGrade(&Ioan, &Popescu));
 
 	return 0;
 }
