@@ -10,7 +10,7 @@ private:
 	float gradeEnglish;
 	float gradeHistory;
 public:
-	void SetName(string nameToSet);
+	void SetName(const string& nameToSet);
 	string GetName();
 
 	void SetGradeMatematics(float gradeToSet);

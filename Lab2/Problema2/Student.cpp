@@ -1,6 +1,6 @@
 #include "Student.h"
 
-void Student::SetName(string nameToSet)
+void Student::SetName(const string& nameToSet)
 {
 	name = nameToSet;
 }
