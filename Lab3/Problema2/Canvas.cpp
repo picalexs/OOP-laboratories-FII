@@ -5,6 +5,10 @@ using namespace std;
 
 Canvas::Canvas(int width, int height)
 {
+	if (width <= 0 || height <= 0) {
+		printf("The height/width can't be <=0!\n");
+		return;
+	}
 	this->width = width;
 	this->height = height;
 	this->canvas = new char* [height];
@@ -20,11 +24,21 @@ Canvas::Canvas(int width, int height)
 
 void Canvas::SetPoint(int x, int y, char ch)
 {
+	if (x < 0 || y < 0 || x >= this->width || y >= this->height) {
+		printf("Can't place the point outside the matrix!\n");
+		return;
+	}
 	this->canvas[y][x] = ch;
 }
 
 void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch)
 {
+	if ((x1 < 0 || y1 < 0 || x1 >= this->width || y1 >= this->height)
+		|| (x2 < 0 || y2 < 0 || x2 >= this->width || y2 >= this->height)) {
+		printf("Can't place the point outside the matrix!\n");
+		return;
+	}
+
 	int dx = abs(x1 - x2);
 	int dy = abs(y1 - y2);
 	int signX = (x1 < x2) ? 1 : -1;
@@ -50,6 +64,10 @@ void Canvas::DrawLine(int x1, int y1, int x2, int y2, char ch)
 
 void Canvas::DrawCircle(int x, int y, int ray, char ch)
 {
+	if (x < 0 || y < 0 || x >= this->width || y >= this->height) {
+		printf("Can't place the point outside the matrix!\n");
+		return;
+	}
 	for (int i = max(0, y - ray); i <= min(this->height, y + ray); ++i)
 	{
 		for (int j = max(0, x - ray); j <= min(this->width, x + ray); ++j)
@@ -66,6 +84,10 @@ void Canvas::DrawCircle(int x, int y, int ray, char ch)
 
 void Canvas::FillCircle(int x, int y, int ray, char ch)
 {
+	if (x < 0 || y < 0 || x >= this->width || y >= this->height) {
+		printf("Can't place the point outside the matrix!\n");
+		return;
+	}
 	for (int i = max(0, y - ray); i <= min(this->height, y + ray); ++i)
 	{
 		for (int j = max(0, x - ray); j <= min(this->width, x + ray); ++j)
@@ -80,6 +102,11 @@ void Canvas::FillCircle(int x, int y, int ray, char ch)
 
 void Canvas::DrawRect(int left, int top, int right, int bottom, char ch)
 {
+	if ((left < 0 || top < 0 || left >= this->width || top >= this->height)
+		|| (right <= 0 || bottom <= 0 || right >= this->width || bottom >= this->height)) {
+		printf("Can't place the point outside the matrix!\n");
+		return;
+	}
 	DrawLine(left, top, left, bottom, ch);
 	DrawLine(left, top, right, top, ch);
 	DrawLine(right, top, right, bottom, ch);
@@ -88,6 +115,11 @@ void Canvas::DrawRect(int left, int top, int right, int bottom, char ch)
 
 void Canvas::FillRect(int left, int top, int right, int bottom, char ch)
 {
+	if ((left < 0 || top < 0 || left >= this->width || top >= this->height)
+		|| (right <= 0 || bottom <= 0 || right >= this->width || bottom >= this->height)) {
+		printf("Can't place the point outside the matrix!\n");
+		return;
+	}
 	for (int i = top; i <= bottom; ++i)
 	{
 		for (int j = left; j <= right; ++j)

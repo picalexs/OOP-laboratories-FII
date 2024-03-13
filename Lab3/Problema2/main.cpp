@@ -4,7 +4,6 @@ using namespace std;
 
 int main()
 {
-	int n = 0;
 	Canvas c(25, 25);
 	c.FillCircle(5, 10, 4, '.');
 	c.SetPoint(10, 10, 'X');
