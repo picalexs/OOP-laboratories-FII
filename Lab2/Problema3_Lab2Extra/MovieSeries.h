@@ -10,4 +10,3 @@ public:
 	void print() const;
 	void sort();
 };
-
