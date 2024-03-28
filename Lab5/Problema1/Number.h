@@ -13,7 +13,7 @@ public:
 
 	Number& operator=(const Number& other);
 	Number& operator=(int nr);
-	Number& operator=(const char* charNr);
+	Number& operator=(char* charNr);
 
 	Number Add(const Number& other) const;
 	friend Number operator+(const Number& other, int nr);

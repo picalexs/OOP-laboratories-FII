@@ -1,9 +1,5 @@
 ﻿#include "Number.h"
-#include <algorithm>
 #include <cstdio>
-#include <cstring>
-#include <cmath>
-#include <stdlib.h>
 
 int CharToValue(char c)
 {
@@ -19,11 +15,62 @@ char ValueToChar(int v)
 	return static_cast<char>(v + 'A' - 10);
 }
 
-int SwitchToDecimal(const char* number, int baseA)
+int GetLength(char* c)
+{
+	int length = 0;
+	while (c[length] != '\0')
+		length++;
+	return length;
+}
+
+int Log(int nr)
+{
+	int p = 2;
+	int result = 0;
+	while (p <= nr)
+	{
+		p *= 2;
+		result++;
+	}
+	return result;
+}
+
+void CopyChar(char* destination, char* source)
+{
+	for (int i = 0; i < GetLength(source); i++)
+		destination[i] = source[i];
+	destination[GetLength(source)] = '\0';
+}
+
+void CopyNChar(char* destination, char* source, int N)
+{
+	for (int i = 0; i < N; i++)
+		destination[i] = source[i];
+	destination[GetLength(source) - 1] = '\0';
+}
+
+int CompareChars(char* first, char* second)
+{
+	if (GetLength(first) > GetLength(second))
+		return 1;
+	if (GetLength(first) < GetLength(second))
+		return -1;
+
+	for (int i = 0; i < GetLength(first); i++) {
+		if (first[i] > second[i])
+			return 1;
+		else if (first[i] < second[i])
+			return -1;
+	}
+
+	return 0;
+}
+
+int SwitchToDecimal(char* number, int baseA)
 {
 	int decimal = 0;
 	int power = 1;
-	for (int i = strlen(number) - 1; i >= 0; i--)
+	for (int i = GetLength(number) - 1; i >= 0; i--)
 	{
 		decimal += CharToValue(number[i]) * power;
 		power *= baseA;
@@ -33,7 +80,7 @@ int SwitchToDecimal(const char* number, int baseA)
 
 char* SwitchToBaseB(int number, int baseB)
 {
-	int newLength = log(number) / log(baseB) + 1;
+	int newLength = Log(number) / Log(baseB) + 1;
 	char* result = new char[newLength + 1];
 	result[newLength] = '\0';
 
@@ -51,10 +98,9 @@ void Number::SwitchBase(int newBase)
 	char* newNumber = SwitchToBaseB(numberDecimal, newBase);
 
 	delete[] this->number;
-	this->number = new char[strlen(newNumber) + 1];
-	strcpy_s(this->number, strlen(newNumber) + 1, newNumber);
+	this->number = new char[GetLength(newNumber) + 1];
+	CopyChar(this->number, newNumber);
 	delete[] newNumber;
-
 	this->base = newBase;
 }
 
@@ -65,7 +111,7 @@ void Number::Print()
 
 int Number::GetDigitsCount()
 {
-	return strlen(this->number);
+	return GetLength(this->number);
 }
 
 int Number::GetBase()
@@ -75,22 +121,22 @@ int Number::GetBase()
 
 Number::Number(const char* inputNumber, int inputBase)
 {
-	this->number = new char[strlen(inputNumber) + 1];
-	strcpy_s(this->number, strlen(inputNumber) + 1, inputNumber);
+	this->number = new char[GetLength(const_cast<char*>(inputNumber)) + 1];
+	CopyChar(this->number, const_cast<char*>(inputNumber));
 	this->base = inputBase;
 }
 
 Number::Number(int nr) {
 	char* intToChar = SwitchToBaseB(nr, 10);
-	this->number = new char[strlen(intToChar) + 1];
-	strcpy_s(this->number, strlen(intToChar) + 1, intToChar);
+	this->number = new char[GetLength(intToChar) + 1];
+	CopyChar(this->number, intToChar);
 	this->base = 10;
 	delete[] intToChar;
 }
 
 Number::Number(const char* charNr) {
-	this->number = new char[strlen(charNr) + 1];
-	strcpy_s(this->number, strlen(charNr) + 1, charNr);
+	this->number = new char[GetLength(const_cast<char*>(charNr)) + 1];
+	CopyChar(this->number, const_cast<char*>(charNr));
 	this->base = 10;
 }
 
@@ -101,8 +147,8 @@ Number::~Number()
 
 Number::Number(const Number& other)
 {
-	this->number = new char[strlen(other.number) + 1];
-	strcpy_s(this->number, strlen(other.number) + 1, other.number);
+	this->number = new char[GetLength(other.number) + 1];
+	CopyChar(this->number, other.number);
 	this->base = other.base;
 }
 
@@ -120,8 +166,8 @@ Number& Number::operator=(const Number& other)
 	if ((*this) != other)
 	{
 		delete[] this->number;
-		this->number = new char[strlen(other.number) + 1];
-		strcpy_s(this->number, strlen(other.number) + 1, other.number);
+		this->number = new char[GetLength(other.number) + 1];
+		CopyChar(this->number, other.number);
 		this->base = other.base;
 	}
 	return *this;
@@ -131,22 +177,22 @@ Number& Number::operator=(int nr)
 {
 	delete[] this->number;
 	char* intToChar = SwitchToBaseB(nr, this->base);//changes int to char*
-	this->number = new char[strlen(intToChar) + 1];
-	strcpy_s(this->number, strlen(intToChar) + 1, intToChar);
+	this->number = new char[GetLength(intToChar) + 1];
+	CopyChar(this->number, intToChar);
 	return *this;
 }
 
-Number& Number::operator=(const char* charNr)
+Number& Number::operator=(char* charNr)
 {
 	delete[] this->number;
-	this->number = new char[strlen(charNr) + 1];
-	strcpy_s(this->number, strlen(charNr) + 1, charNr);
+	this->number = new char[GetLength(charNr) + 1];
+	CopyChar(this->number, charNr);
 	return *this;
 }
 
-char* AddNumbers(const char* number1, const char* number2, int base) {
-	int length1 = strlen(number1);
-	int length2 = strlen(number2);
+char* AddNumbers(char* number1, char* number2, int base) {
+	int length1 = GetLength(number1);
+	int length2 = GetLength(number2);
 	int maxLength = (length1 > length2) ? length1 : length2;
 
 	char* result = new char[maxLength + 2];
@@ -174,7 +220,7 @@ char* AddNumbers(const char* number1, const char* number2, int base) {
 	}
 	else {
 		char* newResult = new char[maxLength + 1];
-		strcpy_s(newResult, maxLength + 1, result + 1);
+		CopyChar(newResult, result + 1);
 		delete[] result;
 		return newResult;
 	}
@@ -231,9 +277,9 @@ Number& Number::operator+=(const Number& other)
 	return *this;
 }
 
-char* SubtractNumbers(const char* number1, const char* number2, int base) {
-	int length1 = strlen(number1);
-	int length2 = strlen(number2);
+char* SubtractNumbers(char* number1, char* number2, int base) {
+	int length1 = GetLength(number1);
+	int length2 = GetLength(number2);
 	int maxLength = (length1 > length2) ? length1 : length2;
 
 	char* result = new char[maxLength + 2];
@@ -252,7 +298,6 @@ char* SubtractNumbers(const char* number1, const char* number2, int base) {
 		else {
 			borrow = 0;
 		}
-
 		result[maxLength - i] = ValueToChar(diff);
 	}
 
@@ -268,7 +313,7 @@ char* SubtractNumbers(const char* number1, const char* number2, int base) {
 			return const_cast<char*>("0");
 		}
 		char* newResult = new char[maxLength + 2 - firstDigit];
-		strcpy_s(newResult, maxLength + 2 - firstDigit, result + firstDigit);
+		CopyChar(newResult, result + firstDigit);
 		delete[] result;
 		return newResult;
 	}
@@ -327,12 +372,12 @@ Number& Number::operator-=(const Number& other)
 
 bool Number::operator!=(const Number& other)
 {
-	return strcmp(this->number, other.number) != 0 || this->base != other.base;
+	return CompareChars(this->number, other.number) != 0 || this->base != other.base;
 }
 
 bool Number::operator==(const Number& other)
 {
-	return strcmp(this->number, other.number) == 0 && this->base == other.base;
+	return CompareChars(this->number, other.number) == 0 && this->base == other.base;
 }
 
 bool Number::operator<(const Number& other)
@@ -374,9 +419,9 @@ char Number::operator[](int index)
 
 Number& Number::operator--()
 {
-	int length = strlen(this->number);
+	int length = GetLength(this->number);
 	char* newNr = new char[length];
-	strcpy_s(newNr, length, this->number + 1);
+	CopyChar(newNr, this->number + 1);
 	delete[] this->number;
 
 	int digitsZero = 0;
@@ -385,20 +430,20 @@ Number& Number::operator--()
 	}
 
 	this->number = new char[length - digitsZero];
-	strcpy_s(this->number, length - digitsZero, newNr + digitsZero);
+	CopyChar(this->number, newNr + digitsZero);
 	delete[] newNr;
 	return (*this);
 }
 
 Number Number::operator--(int nr)
 {
-	int length = strlen(this->number);
+	int length = GetLength(this->number);
 	char* newNr = new char[length];
-	strncpy_s(newNr, length, this->number, length - 1);
+	CopyNChar(newNr, this->number, length - 1);
 	delete[] this->number;
 
 	this->number = new char[length];
-	strcpy_s(this->number, length, newNr);
+	CopyChar(this->number, newNr);
 	delete[] newNr;
 	return (*this);
 }
