@@ -1,6 +1,6 @@
 #include "RangeRover.h"
 
-RangeRover::RangeRover() : Car(const_cast <char*>("RangeRover"), 70, 18, 15, 20, 90, 110, 60) {}
+RangeRover::RangeRover() : Car(const_cast <char*>("RangeRover"), 0, 18, 15, 20, 90, 110, 60) {}
 
 char* RangeRover::GetBrand() const
 {

@@ -35,21 +35,21 @@ int Log(int nr)
 	return result;
 }
 
-void CopyChar(char* destination, char* source)
+void CopyString(char* destination, char* source)
 {
 	for (int i = 0; i < GetLength(source); i++)
 		destination[i] = source[i];
 	destination[GetLength(source)] = '\0';
 }
 
-void CopyNChar(char* destination, char* source, int N)
+void CopyNString(char* destination, char* source, int N)
 {
 	for (int i = 0; i < N; i++)
 		destination[i] = source[i];
 	destination[GetLength(source) - 1] = '\0';
 }
 
-int CompareChars(char* first, char* second)
+int CompareStrings(char* first, char* second)
 {
 	if (GetLength(first) > GetLength(second))
 		return 1;
@@ -62,7 +62,6 @@ int CompareChars(char* first, char* second)
 		else if (first[i] < second[i])
 			return -1;
 	}
-
 	return 0;
 }
 
@@ -99,7 +98,7 @@ void Number::SwitchBase(int newBase)
 
 	delete[] this->number;
 	this->number = new char[GetLength(newNumber) + 1];
-	CopyChar(this->number, newNumber);
+	CopyString(this->number, newNumber);
 	delete[] newNumber;
 	this->base = newBase;
 }
@@ -122,21 +121,21 @@ int Number::GetBase()
 Number::Number(const char* inputNumber, int inputBase)
 {
 	this->number = new char[GetLength(const_cast<char*>(inputNumber)) + 1];
-	CopyChar(this->number, const_cast<char*>(inputNumber));
+	CopyString(this->number, const_cast<char*>(inputNumber));
 	this->base = inputBase;
 }
 
 Number::Number(int nr) {
 	char* intToChar = SwitchToBaseB(nr, 10);
 	this->number = new char[GetLength(intToChar) + 1];
-	CopyChar(this->number, intToChar);
+	CopyString(this->number, intToChar);
 	this->base = 10;
 	delete[] intToChar;
 }
 
 Number::Number(const char* charNr) {
 	this->number = new char[GetLength(const_cast<char*>(charNr)) + 1];
-	CopyChar(this->number, const_cast<char*>(charNr));
+	CopyString(this->number, const_cast<char*>(charNr));
 	this->base = 10;
 }
 
@@ -148,7 +147,7 @@ Number::~Number()
 Number::Number(const Number& other)
 {
 	this->number = new char[GetLength(other.number) + 1];
-	CopyChar(this->number, other.number);
+	CopyString(this->number, other.number);
 	this->base = other.base;
 }
 
@@ -167,7 +166,7 @@ Number& Number::operator=(const Number& other)
 	{
 		delete[] this->number;
 		this->number = new char[GetLength(other.number) + 1];
-		CopyChar(this->number, other.number);
+		CopyString(this->number, other.number);
 		this->base = other.base;
 	}
 	return *this;
@@ -178,7 +177,7 @@ Number& Number::operator=(int nr)
 	delete[] this->number;
 	char* intToChar = SwitchToBaseB(nr, this->base);//changes int to char*
 	this->number = new char[GetLength(intToChar) + 1];
-	CopyChar(this->number, intToChar);
+	CopyString(this->number, intToChar);
 	return *this;
 }
 
@@ -186,7 +185,7 @@ Number& Number::operator=(char* charNr)
 {
 	delete[] this->number;
 	this->number = new char[GetLength(charNr) + 1];
-	CopyChar(this->number, charNr);
+	CopyString(this->number, charNr);
 	return *this;
 }
 
@@ -220,7 +219,7 @@ char* AddNumbers(char* number1, char* number2, int base) {
 	}
 	else {
 		char* newResult = new char[maxLength + 1];
-		CopyChar(newResult, result + 1);
+		CopyString(newResult, result + 1);
 		delete[] result;
 		return newResult;
 	}
@@ -313,7 +312,7 @@ char* SubtractNumbers(char* number1, char* number2, int base) {
 			return const_cast<char*>("0");
 		}
 		char* newResult = new char[maxLength + 2 - firstDigit];
-		CopyChar(newResult, result + firstDigit);
+		CopyString(newResult, result + firstDigit);
 		delete[] result;
 		return newResult;
 	}
@@ -372,12 +371,12 @@ Number& Number::operator-=(const Number& other)
 
 bool Number::operator!=(const Number& other)
 {
-	return CompareChars(this->number, other.number) != 0 || this->base != other.base;
+	return CompareStrings(this->number, other.number) != 0 || this->base != other.base;
 }
 
 bool Number::operator==(const Number& other)
 {
-	return CompareChars(this->number, other.number) == 0 && this->base == other.base;
+	return CompareStrings(this->number, other.number) == 0 && this->base == other.base;
 }
 
 bool Number::operator<(const Number& other)
@@ -421,7 +420,7 @@ Number& Number::operator--()
 {
 	int length = GetLength(this->number);
 	char* newNr = new char[length];
-	CopyChar(newNr, this->number + 1);
+	CopyString(newNr, this->number + 1);
 	delete[] this->number;
 
 	int digitsZero = 0;
@@ -430,7 +429,7 @@ Number& Number::operator--()
 	}
 
 	this->number = new char[length - digitsZero];
-	CopyChar(this->number, newNr + digitsZero);
+	CopyString(this->number, newNr + digitsZero);
 	delete[] newNr;
 	return (*this);
 }
@@ -439,11 +438,11 @@ Number Number::operator--(int nr)
 {
 	int length = GetLength(this->number);
 	char* newNr = new char[length];
-	CopyNChar(newNr, this->number, length - 1);
+	CopyNString(newNr, this->number, length - 1);
 	delete[] this->number;
 
 	this->number = new char[length];
-	CopyChar(this->number, newNr);
+	CopyString(this->number, newNr);
 	delete[] newNr;
 	return (*this);
 }
