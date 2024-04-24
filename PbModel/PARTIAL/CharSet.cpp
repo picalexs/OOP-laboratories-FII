@@ -45,6 +45,15 @@ CharSet::operator int()
 	return count;
 }
 
+CharSet::operator float()
+{
+	int nr = 0;
+	for (int i = 0; i < ASCII_SIZE; i++)
+		if (chars[i])
+			nr++;
+	return nr;
+}
+
 CharSet& CharSet::operator|(const CharSet& other)
 {
 	CharSet U = *this;
@@ -78,6 +87,11 @@ bool CharSet::operator[](int idx)
 {
 	return this->chars[idx];
 }
+//
+//CharSet& CharSet::operator+(int nr)
+//{
+//	this->chars[char(nr)] = true;
+//}
 
 int CharSet::operator()(const char* string)
 {
